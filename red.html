@@ -150,25 +150,19 @@ document.addEventListener("click", function () {
     }
 }, { once: true });
 </script>
-  <audio id="music" src="jeopardy.mp3"></audio>
+<audio id="music" src="jeopardy.mp3"></audio>
 
 <script>
 const music = document.getElementById("music");
 
-music.volume = 1.0;
+function startMusic() {
+    music.volume = 1;
+    music.play().catch(error => {
+        console.log("Ошибка воспроизведения:", error);
+    });
+}
 
-// Запуск музыки
-music.play().catch(() => {
-    document.addEventListener("click", () => {
-        music.play();
-    }, { once: true });
-});
-
-// Остановка через 31 секунду
-setTimeout(() => {
-    music.pause();
-    music.currentTime = 0;
-}, 31000);
+document.addEventListener("click", startMusic, { once: true });
 </script>
 
 </body>

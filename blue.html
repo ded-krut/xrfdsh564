@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>:(</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%);
+    animation: rotate 2s linear infinite;
+}
+
+.loader span {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: white;
+    border-radius: 50%;
+    top: 0;
+    left: 30px;
+    transform-origin: 5px 35px;
+}
+
+.loader span:nth-child(1) { transform: rotate(0deg); }
+.loader span:nth-child(2) { transform: rotate(72deg); }
+.loader span:nth-child(3) { transform: rotate(144deg); }
+.loader span:nth-child(4) { transform: rotate(216deg); }
+.loader span:nth-child(5) { transform: rotate(288deg); }
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+    body {
+    margin: 0;
+    background: #0078D7;
+    color: white;
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    padding: 70px 0 0 90px;
+    box-sizing: border-box;
+}
+
+.screen {
+    width: 80%;
+    max-width: 850px;
+}
+
+.face {
+    font-size: 100px;
+    margin-bottom: 25px;
+}
+
+    h1 {
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    .percent {
+        font-size: 22px;
+        margin-top: 30px;
+    }
+</style>
+</head>
+<body>
+
+<div class="screen">
+    <div class="face">:(</div>
+
+    <h1>На вашем устройстве возникла проблема</h1>
+
+    <p>
+        Произошла критическая ошибка.
+        Необходимо перезапустить устройство.
+    </p>
+
+    <div class="percent">0% завершено</div>
+
+    <p style="font-size:14px; margin-top:40px;">
+
+    </p>
+</div>
+<div class="loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<script>
+document.addEventListener("click", function () {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    }
+}, { once: true });
+</script>
+
+</body>
+</html>

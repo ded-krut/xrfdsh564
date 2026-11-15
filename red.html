@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>СМЕРТЬ</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #8b0000; /* Темно-красный фон */
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Левая панель со смертью и папками */
+  .left-panel {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reaper {
+    font-size: 16px;
+    line-height: 1.1;
+    white-space: pre;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+
+  .folders {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .folder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 8px 14px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .folder:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Центральный блок с текстом и таймером */
+  .center-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .warning-text {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0px #000000;
+  }
+
+  .timer-box {
+    font-size: 110px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px 0px #000000;
+  }
+</style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <div class="reaper">
+      .ed"""" """$$$$be.
+    -"           ^""**$$$e.
+  ."                   '$$$c
+ /                      "4$$b
+d  3                      $$$$
+$  *                   .$$$$$$
+.$  ^c           $$$$$e$$$$$$$$.
+d$L  4.         4$$$$$$$$$$$$$$b
+$$$$b ^ceeeee.  4$$ECL.F*$$$$$$$
+$$$$P d$$$$F $ $$$$$$$$$- $$$$$$
+3$$$F "$$$$b   $"$$$$$$$  $$$$*"
+ $$P"  "$$b   .$ $$$$$...e$$
+  *c    ..    $$ 3$$$$$$$$$$eF
+    %ce""    $$$  $$$$$$$$$$*
+     *$e.    *** d$$$$$"L$$
+      $$$      4J$$$$$% $$$
+     $"'$=e....$*$$**$cz$$"
+     $  *=%4.$ L L$ P3$$$F
+     $   "%*ebJLzb$e$$$$$b
+      %..      4$$$$$$$$$$
+       $$$e   z$$$$$$$$$$%
+        "*$c  "$$$$$$$P"
+          """*$$$$$$$"
+    </div>
+
+    <div class="folders">
+      <div class="folder">📁 Системные файлы</div>
+      <div class="folder">📁 Личные данные</div>
+      <div class="folder">📁 Архив</div>
+    </div>
+  </div>
+
+  <div class="center-box">
+    <div class="warning-text">УДАЛЕНИЕ ЧЕРЕЗ</div>
+    <div class="timer-box" id="timer">00:30</div>
+  </div>
+
+  <script>
+    let timeLeft = 30;
+    const timerElement = document.getElementById('timer');
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      const seconds = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+      timerElement.textContent = '00:' + seconds;
+
+      if (timeLeft <= 0) {
+    clearInterval(timer);
+    window.location.href = "blue.html";
+}
+    }, 1000);
+  </script>
+  <script>
+document.addEventListener("click", function () {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    }
+}, { once: true });
+</script>
+
+</body>
+</html>

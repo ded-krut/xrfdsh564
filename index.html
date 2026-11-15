@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ВАС ЗАМЕТИЛИ</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: black;
+    color: red;
+    font-family: Consolas, monospace;
+    overflow: hidden;
+    text-shadow: 0 0 7px red;
+}
+
+#terminal {
+    height: 100vh;
+    padding: 12px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.35;
+    white-space: pre-wrap;
+}
+
+#faceWindow {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #030303;
+    color: white;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0 0 10px white;
+}
+
+.face {
+    white-space: pre;
+    font-size: clamp(9px, 1.5vw, 18px);
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(30px, 6vw, 55px);
+    letter-spacing: 8px;
+}
+
+input, button {
+    padding: 13px;
+    background: black;
+    color: white;
+    border: 1px solid white;
+    font-family: Consolas, monospace;
+}
+
+input { width: 250px; }
+button { cursor: pointer; }
+
+#result {
+    margin-top: 20px;
+    font-size: 17px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<div id="faceWindow">
+    <div>
+<pre class="face">
+    /\
+    /  \
+    /    \
+    /  __  \
+    / .'  '. \
+    / /  ()  \ \
+    /  '.____.'  \
+    /______________\
+
+</pre>
+
+        <h1>ВАС ЗАМЕТИЛИ</h1>
+
+        <p>СИСТЕМА ОБНАРУЖИЛА ВАШЕ ПРИСУТСТВИЕ</p>
+        <p>Введите код для продолжения:</p>
+
+        <form id="codeForm">
+            <input id="code" placeholder="Введите любое слово..." required>
+            <button type="submit">ПОДТВЕРДИТЬ</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+</div>
+
+<script>
+const terminal = document.getElementById("terminal");
+
+const folders = [
+"C:\\WINDOWS",
+"C:\\SYSTEM32",
+"C:\\PROGRAM FILES",
+"C:\\USERS\\GUEST",
+"C:\\DESKTOP",
+"C:\\TEMP",
+"C:\\PROGRAMDATA"
+];
+
+const files = [
+"kernel32.dll",
+"system.log",
+"config.sys",
+"desktop.ini",
+"drivers.dat",
+"service.exe",
+"network.cfg",
+"security.db",
+"session.tmp",
+"update.cache"
+];
+
+let lines = [
+"C:\\> DIR /S",
+"ЗАПУСК ПОЛНОГО СКАНИРОВАНИЯ...",
+"ПОДКЛЮЧЕНИЕ УСТАНОВЛЕНО..."
+];
+
+for (let i = 0; i < 500; i++) {
+    let folder = folders[i % folders.length];
+    let file = files[(i * 7) % files.length];
+
+    lines.push(folder + "\\" + file);
+}
+
+lines.push("АНАЛИЗ ЗАВЕРШЁН");
+lines.push("НЕИЗВЕСТНОЕ ПОДКЛЮЧЕНИЕ ОБНАРУЖЕНО");
+lines.push("ПОИСК ИСТОЧНИКА...");
+lines.push("ОШИБКА: ИСТОЧНИК НЕ ОПРЕДЕЛЁН");
+lines.push("ПОЛУЧЕНО СООБЩЕНИЕ...");
+lines.push("ЗАГРУЗКА...");
+
+let index = 0;
+
+// ПЕЧАТЬ СТРОК ПО ОДНОЙ
+function printLines() {
+
+    if (index < lines.length) {
+
+        let line = document.createElement("div");
+
+        line.textContent = lines[index++];
+
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+
+        setTimeout(printLines, 8);
+
+    } else {
+
+        setTimeout(() => {
+
+            document.getElementById("faceWindow")
+                .style.display = "flex";
+
+        }, 700);
+
+    }
+}
+
+setTimeout(printLines, 300);
+
+// ОБРАБОТКА КОДА
+document.getElementById("codeForm")
+.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let input = document.getElementById("code");
+    let value = input.value.trim().toLowerCase();
+
+    if (value === "витя") {
+        document.getElementById("result").textContent =
+            "КОД ПРИНЯТ. ДОСТУП РАЗРЕШЁН.";
+
+        input.disabled = true;
+        e.submitter.disabled = true;
+
+    } else {
+        window.location.href = "red.html";
+    }
+});
+</script>
+<script>
+document.addEventListener("click", function () {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    }
+}, { once: true });
+</script>
+
+</body>
+</html>
